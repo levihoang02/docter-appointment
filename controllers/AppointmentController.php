@@ -1,9 +1,9 @@
 <?php
 
-require_once '../models/Appointment.php';
-require_once '../models/Patient.php';
-require_once '../services/database.php';
-require_once '../services/email.php';
+require_once __DIR__ . '/../models/Appointment.php';
+require_once __DIR__ . '/../models/Patient.php';
+require_once __DIR__ . '/../services/database.php';
+require_once __DIR__ . '/../services/email.php';
 
 class AppointmentController
 {

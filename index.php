@@ -1,8 +1,10 @@
 <?php
 
-require_once 'controllers/DoctorController.php';
+require_once 'controllers/AuthController.php';
 require_once 'controllers/AppointmentController.php';
 require_once 'services/database.php';
+require_once 'services/jsonResponse.php';
+
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
@@ -17,11 +19,12 @@ if ($path === '/appointments' && $method === 'POST') {
 
 
 if ($path === '/appointments' && $method === 'GET') {
-    $conn = getDatabaseConnection();
+    jsonResponse(['message' => 'Appointments fetched successfully'], 200);
+    /*$conn = getDatabaseConnection();
     $payload = json_decode(file_get_contents('php://input'), true);
     $controller = new AppointmentController();
     $controller->getAppointmentsByOfficeId($conn, $payload['office_id']);
-    closeDatabaseConnection($conn);
+    closeDatabaseConnection($conn); */
 }
 
 if ($path === '/appointments' && $method === 'PUT') {

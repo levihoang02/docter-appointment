@@ -1,6 +1,4 @@
 <?php
-require_once 'patient.php';
-require_once 'doctor.php';
 
 class Appointment
 {

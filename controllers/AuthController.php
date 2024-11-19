@@ -1,7 +1,7 @@
 <?php
 
-require_once '../models/Admin.php';
-require_once '../services/database.php';
+require_once __DIR__ . '/../models/Admin.php';
+require_once __DIR__ . '/../services/database.php';
 
 class AuthController
 {
