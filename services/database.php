@@ -1,29 +1,47 @@
 <?php
+class Database {
+    private static $instance = null;
+    private $connection;
+    
+    private $hostname = "localhost";
+    private $username = "admin";
+    private $password = "!fw)(54kmYlPNoMc";
+    private $dbname = "docter_booking";
 
-function getDatabaseConnection()
-{
-    $hostname = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "your_database_name";
-
-    // Create a connection
-    $conn = mysqli_connect($hostname, $username, $password);
-
-    if (!$conn) {
-        echo "Connection failed: " . mysqli_connect_error();
+    private function __construct() {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        
+        try {
+            $this->connection = new mysqli(
+                $this->hostname, 
+                $this->username, 
+                $this->password, 
+                $this->dbname
+            );
+            $this->connection->set_charset("utf8mb4");
+        } catch (mysqli_sql_exception $e) {
+            throw new Exception("Connection failed: " . $e->getMessage());
+        }
     }
 
-    // Select the database
-    if (!mysqli_select_db($conn, $dbname)) {
-        echo "Database selection failed: " . mysqli_error($conn);
+    // Prevent cloning of the instance
+    private function __clone() {}
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
     }
 
-    return $conn;
-}
+    public function getConnection() {
+        return $this->connection;
+    }
 
-function closeDatabaseConnection($conn)
-{
-    mysqli_close($conn);
+    public function __destruct() {
+        if ($this->connection) {
+            $this->connection->close();
+        }
+    }
 }
 ?>
