@@ -4,9 +4,9 @@ class Database {
     private $connection;
     
     private $hostname = "localhost";
-    private $username = "admin";
-    private $password = "!fw)(54kmYlPNoMc";
-    private $dbname = "docter_booking";
+    private $username = "doctor_booking";
+    private $password = ".m_xwTF1.DUJIclp";
+    private $dbname = "booking";
 
     private function __construct() {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);

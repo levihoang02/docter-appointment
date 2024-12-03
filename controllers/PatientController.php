@@ -8,15 +8,17 @@ class UserController {
         $this->patientModel = new User($db);
     }
     
-    public function createIfNotExist($full_name, $phone_no, $dob, $email=null) {
-        if($this->patientModel->findByPhoneAndDob($phone_no, $dob)) {
-            return 0;
+    public function createIfNotExist($full_name, $phone_no, $dob, $email='') {
+        if($this->patientModel->findByPhoneAndDob($phone_no, $dob)) {\
+            $result = $this->patientModel->findByPhoneAndDob($phone_no, $dob);
+            $patient = $result->fetch_assoc();
+            return $patient ? $patient['id'];
         }
         if($email) {
-            $this->patientModel->insertWithEmail($full_name, $phone_no, $email, $dob);
+            return $this->patientModel->insertWithEmail($full_name, $phone_no, $email, $dob);
         }
         else {
-            $this->patientModel->insertWithNoEmail($full_name, $phone_no, $dob);
+            return $this->patientModel->insertWithNoEmail($full_name, $phone_no, $dob);
         }
         return 1;
     }

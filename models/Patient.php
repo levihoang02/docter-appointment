@@ -23,7 +23,7 @@ class Patient {
         $stmt->bind_param("ss", $phone, $dob);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        return $result;
     }
 
     public function insertWithEmail($userData) {
@@ -32,7 +32,8 @@ class Patient {
              VALUES (?, ?, ?, ?)"
         );
         $stmt->bind_param("ssss", $userData['full_name'], $userData["phone_no"], $userData["email"], $userData["dob"]);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->connection->insert_id;
     }
 
     public function insertWithNoEmail($userData) {
@@ -41,7 +42,8 @@ class Patient {
              VALUES (?, ?, ?, ?)"
         );
         $stmt->bind_param("ssss", $userData['full_name'], $userData["phone_no"], $userData["dob"]);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->connection->insert_id;
     }
 
     public function delete($id) {

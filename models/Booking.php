@@ -1,5 +1,5 @@
 <?php
-class Patient {
+class Booking {
     private $connection;
 
     public function __construct($db) {
@@ -8,7 +8,7 @@ class Patient {
 
     public function findById($id) {
         $stmt = $this->connection->prepare(
-            "SELECT * FROM patient_bookings WHERE id = ?"
+            "SELECT * FROM bookings WHERE id = ?"
         );
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -18,7 +18,10 @@ class Patient {
 
     public function findSlotsByBookingInfo($docter_id, $office_id) {
         $stmt = $this->connection->prepare(
-            "SELECT slot_id FROM patient_bookings WHERE docter_id = ? OR office_id= ?"
+            "SELECT b.slot_id, s.slot_name 
+             FROM bookings b 
+             JOIN slots s ON b.slot_id = s.id 
+             WHERE b.docter_id = ? OR b.office_id = ?"
         );
         $stmt->bind_param("ii", $docter_id, $office_id);
         $stmt->execute();
@@ -26,9 +29,22 @@ class Patient {
         return $result->fetch_assoc();
     }
 
+    public function findByDocterId($docter_id) {
+        $stmt = $this->connection->prepare(
+            "SELECT s.id, s.name
+             FROM bookings b 
+             JOIN slots s ON b.slot_id = s.id 
+             WHERE b.docter_id = ? AND b.status_id = 1"
+        );
+        $stmt->bind_param("i", $docter_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    } 
+
     public function insert($patient_id, $docter_id, $slot_id, $office_id) {
         $stmt = $this->connection->prepare(
-            "INSERT INTO patient_bookings (patient_id, docter_id, slot_id, office_id)
+            "INSERT INTO bookings (patient_id, docter_id, slot_id, office_id)
              VALUES (?, ?, ?, ?)"
         );
         $stmt->bind_param("iiii", $patient_id, $docter_id, $slot_id, $office_id);

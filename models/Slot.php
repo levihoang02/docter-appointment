@@ -1,16 +1,15 @@
 <?php
-class Docter {
+class Slot {
     private $connection;
 
     public function __construct($db) {
         $this->connection = $db;
     }
 
-    public function getByPfficeId($officeId) {
+    public function getAlSlot() {
         $stmt = $this->connection->prepare(
-            "SELECT * FROM docters WHERE office_id = ?"
+            "SELECT * FROM slots"
         );
-        $stmt->bind_param("i", $officeId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
