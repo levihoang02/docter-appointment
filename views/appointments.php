@@ -24,12 +24,12 @@ $results = $controller->findBookingAll();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 </head>
 <body>
-    <div class="container mt-5" >
+    <div class="container mt-5">
         <h2 class="mb-4">Doctor Booking Appointments</h2>
         <?php
         if ($results->num_rows > 0) {
             echo '<table class="table table-striped" >';
-            echo '<thead class="thead-dark"><tr><th>ID</th><th>Patient Name</th><th>Doctor Name</th><th>Appointment Date</th><th>Appointment Time</th></tr></thead>';
+            echo '<thead style="background-color:lightblue;" class="thead-dark"><tr><th>ID</th><th>Patient Name</th><th>Doctor Name</th><th>Appointment Date</th><th>Appointment Time</th></tr></thead>';
             echo '<tbody>';
             // Output data of each row
             while($row = $results->fetch_assoc()) {
