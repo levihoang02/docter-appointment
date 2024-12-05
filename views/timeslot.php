@@ -55,7 +55,7 @@ $slot = $slotModel->findAll();
                             <div style="width:80%;">
                                 <button class="btn btn-sm btn-primary" id="updateButton-<?php echo $row['id']; ?>" onclick="showUpdateForm(<?php echo $row['id']; ?>)">Update</button> 
                             </div>
-                                <form action="./services/timeslot_management.php" method="post" class="update-form flex-row" id="form-<?php echo $row['id']; ?>" style="display:none;"> 
+                            <form action="./services/timeslot_management.php" method="post" class="update-form flex-row" id="form-<?php echo $row['id']; ?>" style="display:none;"> 
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>"> 
                                 <input type="text" style="max-width:50%;"  name="timeslot" class="form-control" value="<?php echo htmlspecialchars($row['name']); ?>" required> 
                                 <button type="submit" class="btn btn-primary btn-sm btn-update">Update</button> 
@@ -72,7 +72,7 @@ $slot = $slotModel->findAll();
                 <label for="new_timeslot">New Time Slot</label>
                 <input type="text" class="form-control" id="new_timeslot" name="new_timeslot" required></input>
             </div>
-            <button type="submit" class="btn btn-success">Create</button>
+            <button type="submit" class="btn btn-success mt-2">Create</button>
         </form>
     </div>
     <!-- Bootstrap JS and dependencies -->
