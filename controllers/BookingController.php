@@ -15,5 +15,9 @@ class BookingController {
     public function findBookingByDocterId($docter_id) {
         return $this->bookingModel->findByDocterId($docter_id);
     }
+
+    public function findBookingAll() {
+        return $this->bookingModel->findAll();
+    }
 }
 ?> 

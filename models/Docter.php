@@ -15,5 +15,15 @@ class Docter {
         $result = $stmt->get_result();
         return $result;
     }
+
+    public function findById($id) {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM docters WHERE id = ?"
+        );
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
 ?>

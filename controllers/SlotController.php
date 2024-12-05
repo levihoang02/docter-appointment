@@ -11,5 +11,9 @@ class SlotController {
     public function findAll() {
         return $this->slotModel->getAlSlot();
     }
+
+    public function findById($id) {
+        return $this->slotModel->findById($id);
+    }
 }
 ?> 

@@ -11,5 +11,9 @@ class DocterController {
     public function findByOfficeId($officeId) {
         return $this->docterModel->getByPfficeId($officeId);
     }
+
+    public function findById($Id) {
+        return $this->docterModel->findById($Id);
+    }
 }
 ?> 

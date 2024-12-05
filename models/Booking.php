@@ -40,7 +40,16 @@ class Booking {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
-    } 
+    }
+    
+    public function findAll() {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM bookings"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
 
     public function insert($patient_id, $docter_id, $slot_id, $office_id) {
         $stmt = $this->connection->prepare(
