@@ -4,6 +4,6 @@ require_once '../services/AuthService.php';
 
 $authService = new AuthService();
 $authService->logout();
-header('Location: /login.php');
+header('Location: ../index.php');
 exit();
 ?>

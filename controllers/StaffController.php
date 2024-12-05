@@ -1,5 +1,5 @@
 <?php
-require_once '../../services/AlternateDatabase.php';
+require_once './services/database.php';
 
 
 
@@ -7,7 +7,8 @@ class StaffController {
     private $conn;
 
     public function __construct() {
-        $this->conn = (new AlternateDatabase())->getConnection();
+        $db = Database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     public function getBookings() {

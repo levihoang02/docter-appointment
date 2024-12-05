@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Doctor Appointment Booking</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="container my-5">
-        <div class="row justify-content-center">
+    <div class="container my-5" >
+        <div class="row justify-content-center" >
             <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-header bg-primary text-white text-center">
+                <div class="card shadow" style="border-radius:20px;">
+                    <div class="card-header text-center" style="background-color: lightblue;  border-radius:20px 20px 0 0;">
                         <h4>Welcome to Doctor Appointment System</h4>
                         <p>Please login or proceed as a patient</p>
                     </div>
                     <div class="card-body">
                         <!-- Login Form -->
-                        <form action="/controllers/LoginController.php" method="POST">
+                        <form action="./controllers/LoginController.php" method="POST">
                             <!-- Username -->
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
@@ -33,7 +32,7 @@
 
                             <!-- Submit Button -->
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                                <button type="submit" class="btn w-100" style="background-color: lightblue;">Login</button>
                             </div>
                         </form>
 
@@ -42,20 +41,12 @@
 
                         <!-- Button for Patients -->
                         <div class="text-center">
-                            <a href="/views/shared/booking.php" class="btn btn-outline-secondary w-100">I'm a Patient</a>
+                            <a href="index.php?page=bookings" class="btn btn-outline-secondary w-100">I'm a Patient</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-center mt-5">
-        <p>&copy; 2024 Doctor Appointment System. All rights reserved.</p>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

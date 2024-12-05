@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($authService->login($username, $password)) {
         $role = $_SESSION['role'];
         if ($role === 'admin') {
-            header('Location: /views/admin/dashboard.php');
+            header('Location: ../index.php?page=admin_dashboard');
         } else {
-            header('Location: /views/staff/dashboard.php');
+            header('Location: ../index.php?page=staff');
         }
     } else {
         echo "Tên đăng nhập hoặc mật khẩu không đúng!";

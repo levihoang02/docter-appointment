@@ -1,11 +1,12 @@
 <?php
-require_once '../services/AlternateDatabase.php';
+require_once __DIR__ . '/../services/database.php';
 require_once '../services/AuthService.php';
 class AdminController {
     private $db;
 
     public function __construct() {
-        $this->db = (new AlternateDatabase())->getConnection();
+        $db = Database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     public function saveStaff($data) {

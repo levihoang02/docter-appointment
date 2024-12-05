@@ -1,11 +1,12 @@
 <?php
-require_once '../../services/AlternateDatabase.php';
+require_once __DIR__ . '/../services/database.php';
 
 class AdminBookingController {
     private $conn;
 
     public function __construct() {
-        $this->conn = (new AlternateDatabase())->getConnection();
+        $db = Database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     public function getBookings() {
@@ -19,11 +20,11 @@ class AdminBookingController {
                     docters.name AS doctor_name,
                     slots.name AS slot,
                     statuses.name AS status
-                  FROM bookings
-                  JOIN patients ON bookings.patient_id = patients.id
-                  JOIN docters ON bookings.docter_id = docters.id
-                  JOIN slots ON bookings.slot_id = slots.id
-                  JOIN statuses ON bookings.status_id = statuses.id";
+                FROM bookings
+                JOIN patients ON bookings.patient_id = patients.id
+                JOIN docters ON bookings.docter_id = docters.id
+                JOIN slots ON bookings.slot_id = slots.id
+                JOIN statuses ON bookings.status_id = statuses.id";
 
         $result = $this->conn->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);

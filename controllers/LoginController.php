@@ -11,9 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Điều hướng dựa trên vai trò
         if ($role === 'admin') {
-            header('Location: /views/admin/dashboard.php');
+            header('Location: ../index.php?page=admin_dashboard');
         } elseif ($role === 'staff') {
-            header('Location: /views/staff/dashboard.php');
+            header('Location: ../index.php?page=staff_dashboard');
+        } elseif ($role === 'doctor') {
+            header('Location: ../index.php?page=appointments');
         }
     } else {
         echo "Invalid username or password!";

@@ -1,11 +1,14 @@
 <?php
-require_once 'AlternateDatabase.php';
+require_once __DIR__ . '/../services/database.php';
+
+
 
 class AuthService {
     private $conn;
 
     public function __construct() {
-        $this->conn = (new AlternateDatabase())->getConnection();
+        $db = Database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     public function login($username, $password) {
@@ -28,14 +31,5 @@ class AuthService {
     public function logout() {
         session_start();
         session_destroy();
-    }
-
-    public function checkRole($requiredRole) {
-        session_start();
-
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== $requiredRole) {
-            header('Location: /views/shared/login.php?error=unauthorized');
-            exit();
-        }
     }
 }

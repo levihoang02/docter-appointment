@@ -1,11 +1,12 @@
 <?php
-require_once '../../services/AlternateDatabase.php';
+require_once __DIR__ . '/../services/database.php';
 
 class AdminOfficeController {
     private $conn;
 
     public function __construct() {
-        $this->conn = (new AlternateDatabase())->getConnection();
+        $db = Database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     // Lấy danh sách offices

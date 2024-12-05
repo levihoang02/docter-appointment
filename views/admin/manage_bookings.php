@@ -1,5 +1,5 @@
 <?php
-require_once '../../controllers/AdminBookingController.php';
+require_once './controllers/AdminBookingController.php';
 
 $controller = new AdminBookingController();
 
@@ -21,13 +21,11 @@ $bookings = $controller->getBookings();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container my-5">
         <h2 class="text-center">Manage Bookings</h2>
-        <a href="dashboard.php" class="btn btn-secondary mb-3">Back to Dashboard</a>
+        <a href="index.php?page=admin_dashboard" class="btn btn-secondary mb-3">Back to Dashboard</a>
         
         <!-- Booking Table -->
         <table class="table table-striped">
@@ -74,9 +72,6 @@ $bookings = $controller->getBookings();
             </tbody>
         </table>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.querySelectorAll('.toggle-edit').forEach(button => {
             button.addEventListener('click', function () {

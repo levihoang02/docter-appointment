@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../services/database.php';
-require_once __DIR__ . '/../controllers/SlotController.php';
+require_once  './services/database.php';
+require_once  './controllers/SlotController.php';
 
 $db = Database::getInstance();
 
@@ -32,7 +32,7 @@ $slot = $slotModel->findAll();
         <h2>Time Slot Management</h2>
         <!-- Display current time slots -->
         <table class="table table-striped mt-3">
-            <thead>
+            <thead style="background-color:lightblue;">
                 <tr>
                     <th>ID</th>
                     <th>Time Slot</th>

@@ -1,3 +1,20 @@
+<?php session_start(); 
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booking";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname, 3307);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +71,7 @@
     <nav class="navbar navbar-expand-md fixed-top" style="background-color: lightblue;">
         <div class="container-xxl">
             <a href="#intro" class="navbar-brand">
-                <span class="fw-bold" style="font-size: 24px; color:black;">
+                <span href="index.php?page=home" class="fw-bold" style="font-size: 24px; color:black;">
                     Doctor Appointment
                 </span>
             </a>
@@ -67,15 +84,25 @@
                     <li class="nav-item">
                         <a class="btn navButton d-none d-md-block" href="?page=home">HOME</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn navButton d-none d-md-block" href="?page=booking">BOOKING</a>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item">
+                            <a class="btn navButton d-none d-md-block" href="?page=bookings">BOOKINGS</a>
+                        </li>
+                    <?php endif; ?>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn navButton d-none d-md-block" href="?page=appointments">APPOINTMENTS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn navButton d-none d-md-block" href="?page=timeslot">TIMESLOT</a>
-                    </li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <?php if ($_SESSION['role']==='admin'): ?>
+                            <li class="nav-item"><a class="btn navButton d-none d-md-block" href="?page=admin_dashboard">DASHBOARD</a></li>
+                        <?php elseif ($_SESSION['role']==='doctor') : ?>
+                            <li class="nav-item"><a class="btn navButton d-none d-md-block" href="?page=appointments">APPOINTMENTS</a></li>
+                            <li class="nav-item"><a class="btn navButton d-none d-md-block" href="?page=timeslot">TIMESLOT</a></li>
+                        <?php elseif ($_SESSION['role']==='staff') : ?>
+                            <li class="nav-item"><a class="btn navButton d-none d-md-block" href="?page=staff_dashboard">DASHBOARD</a></li>    
+                        <?php endif; ?>
+                        <li class="nav-item"><a class="btn navButton d-none d-md-block" href="./services/logout.php">LOGOUT</a></li>
+                    <?php else: ?>
+                        <li class="nav-item"><a class="btn navButton d-none d-md-block" href="?page=login">LOGIN</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -86,22 +113,46 @@
             $page = $_GET['page'];
             switch ($page) {
                 case 'home':
-                    include './views/home.php';
+                    include './views/shared/home.php';
                     break;
-                case 'booking':
-                    include './views/booking.php';
+                case 'login':
+                    include './views/shared/login.php';
+                    break;
+                case 'view_doctors':
+                    include './views/shared/view_doctors.php';
+                    break;
+                case 'admin_dashboard':
+                    include './views/admin/dashboard.php';
                     break;
                 case 'appointments':
-                    include './views/appointments.php';
+                    include './views/office/appointments.php';
                     break;
                 case 'timeslot':
-                    include './views/timeslot.php';
+                    include './views/office/timeslot.php';
+                    break;
+                case 'staff_dashboard':
+                    include './views/staff/dashboard.php';
+                    break;
+                case 'bookings':
+                    include './views/patient/booking.php';
+                    break;
+                case 'manage_bookings':
+                    include './views/admin/manage_bookings.php';
+                    break;
+                case 'manage_offices':
+                    include './views/admin/manage_offices.php';
+                    break;
+                case 'manage_staff':
+                    include './views/admin/manage_staff.php';
+                    break;
+                case 'view_doctors':
+                    include './views/admin/view_doctors.php';
                     break;
                 default:
                     echo '<p>Page not found</p>';
             }
         } else {
-            include './views/home.php';
+            include './views/shared/home.php';
         }
         ?>
     </div>
