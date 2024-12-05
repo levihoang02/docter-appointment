@@ -15,11 +15,11 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            justify-content:center;
         }
         footer {
             margin-top: 50px;
             padding: 15px;
-            bottom: 0;
             width: 100%;
             background-color: lightblue;
             font-weight: bolder;
@@ -102,7 +102,7 @@
 </body>
 <footer>
     <section id="footer">
-        <p>Powered by </p>
+    <p>&copy; 2024 Doctor Booking. All rights reserved.</p>
     </section>
 </footer>
 </html>
