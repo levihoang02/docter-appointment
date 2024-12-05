@@ -1,5 +1,5 @@
 <?php
-require_once '../../controllers/AdminOfficeController.php';
+require_once './controllers/AdminOfficeController.php';
 
 $controller = new AdminOfficeController();
 
@@ -23,13 +23,11 @@ $offices = $controller->getOffices();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Offices</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container my-5">
         <h2 class="text-center">Manage Offices</h2>
-        <a href="dashboard.php" class="btn btn-secondary mb-3">Back to Dashboard</a>
+        <a href="index.php?page=admin_dashboard" class="btn btn-secondary mb-3">Back to Dashboard</a>
         
         <!-- Add Office Form -->
         <form method="POST" class="mb-4">
@@ -50,7 +48,6 @@ $offices = $controller->getOffices();
             </div>
         </form>
 
-        <!-- Office Table -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -91,8 +88,6 @@ $offices = $controller->getOffices();
         </table>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.querySelectorAll('.toggle-edit').forEach(button => {
             button.addEventListener('click', function () {

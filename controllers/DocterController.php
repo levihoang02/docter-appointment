@@ -12,8 +12,12 @@ class DocterController {
         return $this->docterModel->getByPfficeId($officeId);
     }
 
-    public function findById($Id) {
-        return $this->docterModel->findById($Id);
+    public function findById($id) {
+        return $this->docterModel->findById($id);
+    }
+
+    public function findAll() {
+        return $this->docterModel->findAll();
     }
 }
 ?> 

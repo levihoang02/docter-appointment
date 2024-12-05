@@ -86,6 +86,9 @@ if ($conn->connect_error) {
                     </li>
                     <?php if (!isset($_SESSION['user_id'])): ?>
                         <li class="nav-item">
+                            <a class="btn navButton d-none d-md-block" href="?page=view_doctors">DOCTORS</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="btn navButton d-none d-md-block" href="?page=bookings">BOOKINGS</a>
                         </li>
                     <?php endif; ?>
@@ -145,8 +148,11 @@ if ($conn->connect_error) {
                 case 'manage_staff':
                     include './views/admin/manage_staff.php';
                     break;
-                case 'view_doctors':
+                case 'view_doctors_admin':
                     include './views/admin/view_doctors.php';
+                    break;
+                case 'view_doctors':
+                    include './views/shared/view_doctors.php';
                     break;
                 default:
                     echo '<p>Page not found</p>';

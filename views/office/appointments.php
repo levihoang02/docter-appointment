@@ -29,7 +29,7 @@ $results = $controller->findBookingAll();
         <?php
         if ($results->num_rows > 0) {
             echo '<table class="table table-striped" >';
-            echo '<thead style="background-color:lightblue;" class="thead-dark"><tr><th>ID</th><th>Patient Name</th><th>Doctor Name</th><th>Appointment Date</th><th>Appointment Time</th></tr></thead>';
+            echo '<thead style="background-color:lightblue;" class="thead-dark"><tr><th>ID</th><th>Patient Name</th><th>Doctor Name</th><th>Appointment Date</th><th>Appointment Time</th><th>Appointment Status</th></tr></thead>';
             echo '<tbody>';
             // Output data of each row
             while($row = $results->fetch_assoc()) {
@@ -47,6 +47,7 @@ $results = $controller->findBookingAll();
                 echo '<td>' . htmlspecialchars($row['id']) . '</td>';
                 echo '<td>' . htmlspecialchars($patient['full_name']) . '</td>';
                 echo '<td>' . htmlspecialchars($docter['name']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['date']) . '</td>';
                 echo '<td>' . htmlspecialchars($slot['name']) . '</td>';
                 echo '<td>' . htmlspecialchars($status['name']) . '</td>';
                 echo '</tr>';

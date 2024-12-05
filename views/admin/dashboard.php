@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
                                 <a href="index.php?page=manage_staff" class="btn btn-outline-secondary w-100">Manage Staff</a>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <a href="index.php?page=view_doctors" class="btn btn-outline-success w-100">View Doctors</a>
+                                <a href="index.php?page=view_doctors_admin" class="btn btn-outline-success w-100">View Doctors</a>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <a href="index.php?page=manage_bookings" class="btn btn-outline-warning w-100">Manage Bookings</a>

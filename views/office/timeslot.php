@@ -75,7 +75,6 @@ $slot = $slotModel->findAll();
             <button type="submit" class="btn btn-success mt-2">Create</button>
         </form>
     </div>
-    <!-- Bootstrap JS and dependencies -->
     
 </body>
 </html>

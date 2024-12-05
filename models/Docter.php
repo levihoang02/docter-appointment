@@ -25,5 +25,13 @@ class Docter {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+    public function findAll() {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM docters"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
 }
 ?>
