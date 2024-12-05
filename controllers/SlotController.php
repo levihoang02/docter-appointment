@@ -15,5 +15,13 @@ class SlotController {
     public function findById($id) {
         return $this->slotModel->findById($id);
     }
+
+    public function createSlot($name) {
+        return $this->slotModel->createSlot($name);
+    }
+
+    public function updateSlot($id, $name) {
+        return $this->slotModel->updateSlot($id, $name);
+    }
 }
 ?> 

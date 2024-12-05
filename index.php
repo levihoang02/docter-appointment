@@ -73,6 +73,9 @@
                     <li class="nav-item">
                         <a class="btn navButton d-none d-md-block" href="?page=appointments">APPOINTMENTS</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="btn navButton d-none d-md-block" href="?page=timeslot">TIMESLOT</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -90,6 +93,9 @@
                     break;
                 case 'appointments':
                     include './views/appointments.php';
+                    break;
+                case 'timeslot':
+                    include './views/timeslot.php';
                     break;
                 default:
                     echo '<p>Page not found</p>';

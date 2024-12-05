@@ -24,5 +24,22 @@ class Slot {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function createSlot($name) {
+        $stmt = $this->connection->prepare(
+            "INSERT INTO slots (name)
+            VALUES (?)"
+        );
+        $stmt->bind_param("s", $name);
+        return $stmt->execute();
+    }
+
+    public function updateSlot($id, $name) {
+        $stmt = $this->connection->prepare(
+            "UPDATE slots SET name = ? WHERE id = ?"
+        );
+        $stmt->bind_param("si", $name,  $id);
+        return $stmt->execute();
+    }
 }
 ?>
