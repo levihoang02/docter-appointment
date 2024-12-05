@@ -11,5 +11,9 @@ class SlotController {
     public function findAll() {
         return $this->slotModel->getAlSlot();
     }
+
+    public function findSlotsByFilters($startDate, $endDate, $docterId) {
+        return $this->slotModel->findSlotsByFilters($startDate, $endDate, $docterId);
+    }
 }
 ?> 

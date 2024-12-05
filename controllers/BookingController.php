@@ -8,12 +8,19 @@ class BookingController {
         $this->bookingModel = new Booking($db);
     }
     
-    public function create($patient_id, $docter_id, $slot_id, $office_id) {
-        $this->bookingModel->create($patient_id, $docter_id, $slot_id, $office_id);
+    public function create($patient_id, $docter_id, $slot_id, $date) {
+        $this->bookingModel->insert($patient_id, $docter_id, $slot_id, $date);
+        return true;
     }
 
     public function findBookingByDocterId($docter_id) {
         return $this->bookingModel->findByDocterId($docter_id);
     }
+
+    public function findByDocterIdAndDate($docter_id, $date) {
+        return $this->bookingModel->findByDocterIdAndDate($docter_id, $date);
+    }
+
+
 }
 ?> 

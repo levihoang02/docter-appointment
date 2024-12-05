@@ -1,18 +1,20 @@
 <?php
 require_once __DIR__ . '/../models/Patient.php';
 
-class UserController {
+class PatientController {
     private $patientModel;
     
     public function __construct($db) {
-        $this->patientModel = new User($db);
+        $this->patientModel = new Patient($db);
     }
     
-    public function createIfNotExist($full_name, $phone_no, $dob, $email='') {
-        if($this->patientModel->findByPhoneAndDob($phone_no, $dob)) {\
+    public function createIfNotExist($full_name, $phone_no, $dob, $email) {
+        if($this->patientModel->findByPhoneAndDob($phone_no, $dob)) {
             $result = $this->patientModel->findByPhoneAndDob($phone_no, $dob);
             $patient = $result->fetch_assoc();
-            return $patient ? $patient['id'];
+            if($patient) {
+                return $patient['id'];
+            }
         }
         if($email) {
             return $this->patientModel->insertWithEmail($full_name, $phone_no, $email, $dob);

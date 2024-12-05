@@ -9,6 +9,7 @@ $db = Database::getInstance();
 
 $model = $_GET['model'] ?? '';
 $query = $_GET['query'] ?? '';
+$date = $_GET['date'] ?? '';
 
 $resultsArray = [];
 
@@ -21,6 +22,7 @@ if($model == 'offices') {
     echo json_encode($resultsArray);
 }
 else if($model == 'docters') {
+    $resultsArray = [];
     $controller = new DocterController($db->getConnection());
     $results = $controller->findByOfficeId($query);
     while ($row = $results->fetch_assoc()) {

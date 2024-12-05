@@ -23,11 +23,34 @@ function ajaxSearch(model, query, callback) {
     xhr.send();
 }
 
+function ajaxSearch2(model, date, query, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `../services/search.php?model=${model}&query=${query}&date=${date}`, true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const results = JSON.parse(xhr.responseText); // Parse JSON response
+            callback(results); // Use a callback to return results
+        } else {
+            callback([]); // Return an empty array on error
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Error fetching search results');
+        callback([]); // Return an empty array on error
+    };
+
+    xhr.send();
+}
+
 function initializeApp() {
     console.log("Initializing app...");
     const officeOption = document.getElementById('doctor_office');
     const docterOption = document.getElementById('doctor');
     const slotOption = document.getElementById('time_slot');
+    const dateOption = document.getElementById('appointment_date');
+
 
     ajaxSearch('slots', 'all', function(slots) {
         slotOption.innerHTML = slots.map((result) => {
@@ -61,6 +84,22 @@ function initializeApp() {
                 }
             });
         }
+    });
+
+    dateOption.addEventListener('change', function(event) {
+        const selectedValue = event.target.value;
+        ajaxSearch('slots', selectedValue, function(data) {
+            let bookedSlots = data.map(booking => String(booking.id));
+            Array.from(slotOption.options).forEach(option => {
+                // console.log(bookedSlots,  " value", typeof(option.value), " re: ", bookedSlots.includes(option.value));
+                if (bookedSlots.includes(option.value)) {
+                    option.disabled = true;
+                }
+                else {
+                    option.disabled = false;
+                }
+            });
+        });
     });
 
     officeOption.addEventListener('change', function(event) {
