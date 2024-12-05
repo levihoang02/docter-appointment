@@ -1,22 +1,29 @@
 <?php
+class Docter {
+    private $connection;
 
-class Doctor
-{
-    public static function getAllDoctors($conn)
-    {
-        $query = "SELECT id, name, specialty FROM doctors";
-        $result = mysqli_query($conn, $query);
+    public function __construct($db) {
+        $this->connection = $db;
+    }
 
-        if (!$result) {
-            return ['error' => 'Failed to fetch doctors: ' . mysqli_error($conn)];
-        }
+    public function getByPfficeId($officeId) {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM docters WHERE office_id = ?"
+        );
+        $stmt->bind_param("i", $officeId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
 
-        $doctors = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $doctors[] = $row;
-        }
-
-        return $doctors;
+    public function findById($id) {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM docters WHERE id = ?"
+        );
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }
 ?>

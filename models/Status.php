@@ -1,18 +1,19 @@
 <?php
-class Office {
+class Status {
     private $connection;
 
     public function __construct($db) {
         $this->connection = $db;
     }
 
-    public function getAllOffice() {
+    public function findById($id) {
         $stmt = $this->connection->prepare(
-            "SELECT * FROM offices"
+            "SELECT * FROM statuses WHERE id = ?"
         );
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result;
+        return $result->fetch_assoc();
     }
 }
 ?>

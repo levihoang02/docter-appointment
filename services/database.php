@@ -4,9 +4,9 @@ class Database {
     private $connection;
     
     private $hostname = "localhost";
-    private $username = "admin";
-    private $password = "!fw)(54kmYlPNoMc";
-    private $dbname = "docter_booking";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "booking";
 
     private function __construct() {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -16,7 +16,8 @@ class Database {
                 $this->hostname, 
                 $this->username, 
                 $this->password, 
-                $this->dbname
+                $this->dbname,
+                3307
             );
             $this->connection->set_charset("utf8mb4");
         } catch (mysqli_sql_exception $e) {
