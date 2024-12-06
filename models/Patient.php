@@ -26,22 +26,22 @@ class Patient {
         return $result;
     }
 
-    public function insertWithEmail($userData) {
+    public function insertWithEmail($full_name, $phone_no, $email, $dob) {
         $stmt = $this->connection->prepare(
             "INSERT INTO patients (full_name, phone_no, email, dob)
              VALUES (?, ?, ?, ?)"
         );
-        $stmt->bind_param("ssss", $userData['full_name'], $userData["phone_no"], $userData["email"], $userData["dob"]);
+        $stmt->bind_param("ssss", $full_name, $phone_no, $email, $dob);
         $stmt->execute();
         return $this->connection->insert_id;
     }
 
-    public function insertWithNoEmail($userData) {
+    public function insertWithNoEmail($full_name, $phone_no, $dob) {
         $stmt = $this->connection->prepare(
             "INSERT INTO patients (full_name, phone_no, dob)
              VALUES (?, ?, ?, ?)"
         );
-        $stmt->bind_param("ssss", $userData['full_name'], $userData["phone_no"], $userData["dob"]);
+        $stmt->bind_param("ssss", $full_name, $phone_no, $dob);
         $stmt->execute();
         return $this->connection->insert_id;
     }

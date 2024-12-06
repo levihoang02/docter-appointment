@@ -23,5 +23,9 @@ class SlotController {
     public function updateSlot($id, $name) {
         return $this->slotModel->updateSlot($id, $name);
     }
+    
+    public function findSlotsByFilters($startDate, $endDate, $docterId) {
+        return $this->slotModel->findSlotsByFilters($startDate, $endDate, $docterId);
+    }
 }
 ?> 

@@ -51,12 +51,25 @@ class Booking {
         return $result;
     }
 
-    public function insert($patient_id, $docter_id, $slot_id, $office_id) {
+    public function findByDocterIdAndDate($docter_id, $date) {
         $stmt = $this->connection->prepare(
-            "INSERT INTO bookings (patient_id, docter_id, slot_id, office_id)
+            "SELECT s.id, s.name
+             FROM bookings b 
+             JOIN slots s ON b.slot_id = s.id 
+             WHERE b.docter_id = ? AND (b.status_id = 1 AND b.booking_date = ?)"
+        );
+        $stmt->bind_param("is", $docter_id, $date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function insert($patient_id, $docter_id, $slot_id, $date) {
+        $stmt = $this->connection->prepare(
+            "INSERT INTO bookings (patient_id, docter_id, slot_id, booking_date)
              VALUES (?, ?, ?, ?)"
         );
-        $stmt->bind_param("iiii", $patient_id, $docter_id, $slot_id, $office_id);
+        $stmt->bind_param("iiis", $patient_id, $docter_id, $slot_id, $date);
         return $stmt->execute();
     }
 

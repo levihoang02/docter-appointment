@@ -8,11 +8,13 @@ class PatientController {
         $this->patientModel = new Patient($db);
     }
     
-    public function createIfNotExist($full_name, $phone_no, $dob, $email='') {
+    public function createIfNotExist($full_name, $phone_no, $dob, $email) {
         if($this->patientModel->findByPhoneAndDob($phone_no, $dob)) {
             $result = $this->patientModel->findByPhoneAndDob($phone_no, $dob);
             $patient = $result->fetch_assoc();
-            return $patient ? $patient['id'] : null;
+            if($patient) {
+                return $patient['id'];
+            }
         }
         if($email) {
             return $this->patientModel->insertWithEmail($full_name, $phone_no, $email, $dob);
