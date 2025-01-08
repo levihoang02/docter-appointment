@@ -41,12 +41,12 @@ class Slot {
         $stmt->bind_param("si", $name,  $id);
         return $stmt->execute();
     }
-    
+
     public function findSlotsByFilters($startDate, $endDate, $docterId) {
         $stmt = $this->connection->prepare(
             "SELECT 
                 b.id, 
-                b.booking_date, 
+                b.date, 
                 d.name AS doctor_name, 
                 s.name AS slot_name,
                 s.id as slot_id
@@ -57,9 +57,9 @@ class Slot {
             JOIN 
                 slots s ON b.slot_id = s.id
             WHERE 
-                b.booking_date BETWEEN ? AND ? AND 
+                b.date BETWEEN ? AND ? AND 
                 b.docter_id = ? AND b.status_id = 2
-                ORDER BY `b`.`booking_date` DESC"
+                ORDER BY `b`.`date` DESC"
         );
     
         // Use 's' for strings (dates) and 'i' for the integer (docterId)

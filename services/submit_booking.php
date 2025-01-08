@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $phone = $_POST['phone'];
         $email = isset($_POST['email']) ? $_POST['email'] : null;
         $dob = $_POST['dob'];
-
         $patientId = $patientController->createIfNotExist($fullName, $phone, $dob, $email);
         $result = $bookingController->create($patientId, $doctorId, $slotId, $slotDate);
 

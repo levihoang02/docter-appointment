@@ -15,7 +15,7 @@ $slots = [];
 while ($row = $results->fetch_assoc()) {
     $slots[] = [
         'id' => $row['slot_id'],
-        'date' => $row['booking_date'],
+        'date' => $row['date'],
         'time' => $row['slot_name'],
         'doctor_name' => $row['doctor_name']
     ];

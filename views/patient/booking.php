@@ -112,7 +112,6 @@ $offices = (new OfficeController($db->getConnection()))->findAll();
     </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Pass predefined slots to JavaScript from PHP
         const allSlots = <?php echo json_encode($allSlots); ?>;
@@ -125,7 +124,7 @@ $offices = (new OfficeController($db->getConnection()))->findAll();
             if (officeId) {
                 doctorSelect.disabled = false;
 
-                fetch(`../services/search.php?model=docters&query=${officeId}`)
+                fetch(`./services/search.php?model=docters&query=${officeId}`)
                     .then(response => response.json())
                     .then(data => {
                         doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
@@ -150,12 +149,11 @@ $offices = (new OfficeController($db->getConnection()))->findAll();
             const endDate = document.getElementById('end_date').value;
             const doctorId = document.getElementById('doctor').value;
 
-            let url = `../services/view_slots.php?start_date=${startDate}&end_date=${endDate}&doctor_id=${doctorId}`;
+            let url = `./services/view_slots.php?start_date=${startDate}&end_date=${endDate}&doctor_id=${doctorId}`;
 
             fetch(url)
                 .then(response => response.json())
                 .then(bookedSlots => {
-                    
                     let avaiSlots = [];
                     let current = new Date(startDate);
                     let end = new Date(endDate);
@@ -222,7 +220,7 @@ $offices = (new OfficeController($db->getConnection()))->findAll();
 
             const formData = new FormData(this);
 
-            fetch('../services/submit_booking.php', {
+            fetch('./services/submit_booking.php', {
                 method: 'POST',
                 body: formData
             })

@@ -66,7 +66,7 @@ class Booking {
 
     public function insert($patient_id, $docter_id, $slot_id, $date) {
         $stmt = $this->connection->prepare(
-            "INSERT INTO bookings (patient_id, docter_id, slot_id, booking_date)
+            "INSERT INTO bookings (patient_id, docter_id, slot_id, date)
              VALUES (?, ?, ?, ?)"
         );
         $stmt->bind_param("iiis", $patient_id, $docter_id, $slot_id, $date);

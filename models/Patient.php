@@ -39,9 +39,9 @@ class Patient {
     public function insertWithNoEmail($full_name, $phone_no, $dob) {
         $stmt = $this->connection->prepare(
             "INSERT INTO patients (full_name, phone_no, dob)
-             VALUES (?, ?, ?, ?)"
+             VALUES (?, ?, ?)"
         );
-        $stmt->bind_param("ssss", $full_name, $phone_no, $dob);
+        $stmt->bind_param("sss", $full_name, $phone_no, $dob);
         $stmt->execute();
         return $this->connection->insert_id;
     }

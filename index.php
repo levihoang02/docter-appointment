@@ -70,8 +70,8 @@ if ($conn->connect_error) {
 <body>
     <nav class="navbar navbar-expand-md fixed-top" style="background-color: lightblue;">
         <div class="container-xxl">
-            <a href="#intro" class="navbar-brand">
-                <span href="index.php?page=home" class="fw-bold" style="font-size: 24px; color:black;">
+            <a href="index.php?page=home" class="navbar-brand">
+                <span  class="fw-bold" style="font-size: 24px; color:black;">
                     Doctor Appointment
                 </span>
             </a>
